@@ -1,0 +1,11 @@
+{
+    "categoria": {
+        "titulos": {
+            "listar_categoria": "Categorías"
+        },
+        "labels": {
+            "nombre": "Nombre",
+            "descripcion": "Descripción"
+        }
+    }
+}
