@@ -16,6 +16,8 @@ export class CategoriasComponent implements OnInit, OnDestroy {
 
   categorias: Categoria[] = [];
 
+  categoria!: Categoria;
+
   dataSource: MatTableDataSource<Categoria> = new MatTableDataSource(
     [] as Categoria[]
   );
@@ -23,6 +25,15 @@ export class CategoriasComponent implements OnInit, OnDestroy {
   constructor(private readonly categoriaService: CategoriaService) {}
 
   ngOnInit(): void {
+    this.obtenerTodas();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
+
+  obtenerTodas() {
     this.categoriaService
       .obtenerTodas()
       .pipe(takeUntil(this.destroy$))
@@ -31,15 +42,18 @@ export class CategoriasComponent implements OnInit, OnDestroy {
           this.categorias = response.valor;
           this.dataSource = new MatTableDataSource(response.valor);
         },
-        error: () => {
-          this.categorias = [];
-          this.dataSource = new MatTableDataSource([] as Categoria[]);
-        },
       });
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next(null);
-    this.destroy$.complete();
+  verDetalle(idCategoria: number): void {
+    this.categoriaService
+      .buscarPorId(idCategoria)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.categoria = response.valor;
+          console.table(this.categoria);
+        },
+      });
   }
 }

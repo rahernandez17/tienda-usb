@@ -11,8 +11,8 @@
 
     <span *ngIf="column === 'opciones'">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let object">
-        <button mat-icon-button color="accent">
+      <mat-cell *matCellDef="let categoria">
+        <button mat-icon-button color="accent" (click)="verDetalle(categoria.id)">
           <mat-icon>visibility</mat-icon>
         </button>
         <button mat-icon-button color="primary">

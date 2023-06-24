@@ -5,6 +5,7 @@ import { ListSimpleResponse } from '../../interfaces/list-simple-response.interf
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { UrlUtil } from '../../utils/url.util';
+import { SimpleResponse } from '../../interfaces/simple-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,12 @@ export class CategoriaService {
   public obtenerTodas(): Observable<ListSimpleResponse<Categoria>> {
     return this.httpClient.get<ListSimpleResponse<Categoria>>(
       `${environment.urlServer}${UrlUtil.URL_CATEGORIA_OBTENER_TODAS}`
+    );
+  }
+
+  public buscarPorId(id: number): Observable<SimpleResponse<Categoria>> {
+    return this.httpClient.get<SimpleResponse<Categoria>>(
+      `${environment.urlServer}${UrlUtil.URL_CATEGORIA_BUSCAR_POR_ID.replace('{id}', id.toString())}`
     );
   }
 }
