@@ -1,31 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CategoriaService } from 'src/app/core/services/categoria/categoria.service';
+import { Subject, takeUntil } from 'rxjs';
+import { Categoria } from 'src/app/core/interfaces/categoria/categoria.interface';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
   styleUrls: ['./categorias.component.scss'],
 })
-export class CategoriasComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-}
+export class CategoriasComponent implements OnInit, OnDestroy {
+  readonly listColumnas: string[] = ['id', 'nombre', 'descripcion', 'opciones'];
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+  private readonly destroy$: Subject<any> = new Subject();
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+  categorias: Categoria[] = [];
+
+  dataSource: MatTableDataSource<Categoria> = new MatTableDataSource(
+    [] as Categoria[]
+  );
+
+  constructor(private readonly categoriaService: CategoriaService) {}
+
+  ngOnInit(): void {
+    this.categoriaService
+      .obtenerTodas()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.categorias = response.valor;
+          this.dataSource = new MatTableDataSource(response.valor);
+        },
+        error: () => {
+          this.categorias = [];
+          this.dataSource = new MatTableDataSource([] as Categoria[]);
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
+}

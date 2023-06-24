@@ -4,6 +4,7 @@
             "listar_categoria": "Categorías"
         },
         "labels": {
+            "id": "ID",
             "nombre": "Nombre",
             "descripcion": "Descripción"
         }
