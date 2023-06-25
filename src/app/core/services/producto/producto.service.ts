@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { ListSimpleResponse } from '../../interfaces/list-simple-response.interface';
 import {
   ActualizaProductoRequest,
@@ -24,29 +24,47 @@ export class ProductoService {
   }
 
   public buscarPorId(id: number): Observable<SimpleResponse<Producto>> {
-    return this.httpClient.get<SimpleResponse<Producto>>(
-      `${environment.urlServer}${UrlUtil.URL_PRODUCTO_BUSCAR_POR_ID.replace(
-        '{id}',
-        id.toString()
-      )}`
-    );
+    return this.httpClient
+      .get<SimpleResponse<Producto>>(
+        `${environment.urlServer}${UrlUtil.URL_PRODUCTO_BUSCAR_POR_ID.replace(
+          '{id}',
+          id.toString()
+        )}`
+      )
+      .pipe(
+        catchError((error) =>
+          throwError(() => error.error as SimpleResponse<any>)
+        )
+      );
   }
 
   public guardar(
     producto: GuardaProductoRequest
   ): Observable<SimpleResponse<Producto>> {
-    return this.httpClient.post<SimpleResponse<Producto>>(
-      `${environment.urlServer}${UrlUtil.URL_PRODUCTO_GUARDAR}`,
-      producto
-    );
+    return this.httpClient
+      .post<SimpleResponse<Producto>>(
+        `${environment.urlServer}${UrlUtil.URL_PRODUCTO_GUARDAR}`,
+        producto
+      )
+      .pipe(
+        catchError((error) =>
+          throwError(() => error.error as SimpleResponse<any>)
+        )
+      );
   }
 
   public actualizar(
     producto: ActualizaProductoRequest
   ): Observable<SimpleResponse<Producto>> {
-    return this.httpClient.put<SimpleResponse<Producto>>(
-      `${environment.urlServer}${UrlUtil.URL_PRODUCTO_ACTUALIZAR}`,
-      producto
-    );
+    return this.httpClient
+      .put<SimpleResponse<Producto>>(
+        `${environment.urlServer}${UrlUtil.URL_PRODUCTO_ACTUALIZAR}`,
+        producto
+      )
+      .pipe(
+        catchError((error) =>
+          throwError(() => error.error as SimpleResponse<any>)
+        )
+      );
   }
 }

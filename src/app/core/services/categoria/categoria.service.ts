@@ -5,7 +5,7 @@ import {
   GuardaCategoriaRequest,
 } from '../../interfaces/categoria/categoria.interface';
 import { ListSimpleResponse } from '../../interfaces/list-simple-response.interface';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { UrlUtil } from '../../utils/url.util';
 import { SimpleResponse } from '../../interfaces/simple-response.interface';
@@ -23,29 +23,47 @@ export class CategoriaService {
   }
 
   public buscarPorId(id: number): Observable<SimpleResponse<Categoria>> {
-    return this.httpClient.get<SimpleResponse<Categoria>>(
-      `${environment.urlServer}${UrlUtil.URL_CATEGORIA_BUSCAR_POR_ID.replace(
-        '{id}',
-        id.toString()
-      )}`
-    );
+    return this.httpClient
+      .get<SimpleResponse<Categoria>>(
+        `${environment.urlServer}${UrlUtil.URL_CATEGORIA_BUSCAR_POR_ID.replace(
+          '{id}',
+          id.toString()
+        )}`
+      )
+      .pipe(
+        catchError((error) =>
+          throwError(() => error.error as SimpleResponse<any>)
+        )
+      );
   }
 
   public guardar(
     categoria: GuardaCategoriaRequest
   ): Observable<SimpleResponse<Categoria>> {
-    return this.httpClient.post<SimpleResponse<Categoria>>(
-      `${environment.urlServer}${UrlUtil.URL_CATEGORIA_GUARDAR}`,
-      categoria
-    );
+    return this.httpClient
+      .post<SimpleResponse<Categoria>>(
+        `${environment.urlServer}${UrlUtil.URL_CATEGORIA_GUARDAR}`,
+        categoria
+      )
+      .pipe(
+        catchError((error) =>
+          throwError(() => error.error as SimpleResponse<any>)
+        )
+      );
   }
 
   public actualizar(
     categoria: Categoria
   ): Observable<SimpleResponse<Categoria>> {
-    return this.httpClient.put<SimpleResponse<Categoria>>(
-      `${environment.urlServer}${UrlUtil.URL_CATEGORIA_ACTUALIZAR}`,
-      categoria
-    );
+    return this.httpClient
+      .put<SimpleResponse<Categoria>>(
+        `${environment.urlServer}${UrlUtil.URL_CATEGORIA_ACTUALIZAR}`,
+        categoria
+      )
+      .pipe(
+        catchError((error) =>
+          throwError(() => error.error as SimpleResponse<any>)
+        )
+      );
   }
 }

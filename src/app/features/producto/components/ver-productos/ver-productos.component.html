@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Detalle del producto</h2>
+<h2 mat-dialog-title>{{ "producto.titulos.ver_detalle" | translate }}</h2>
 <mat-dialog-content class="mat-typography">
   <mat-list role="list" *ngIf="producto">
     <mat-list-item role="listitem">
@@ -31,5 +31,7 @@
   </mat-list>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-button mat-dialog-close>
+    {{ "producto.botones.cerrar" | translate }}
+  </button>
 </mat-dialog-actions>

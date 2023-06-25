@@ -13,6 +13,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { SwalUtil } from 'src/app/core/utils/swal.util';
+import { FormularioCategoriasComponent } from '../../components/formulario-categorias/formulario-categorias.component';
+import { VerCategoriasComponent } from '../../components/ver-categorias/ver-categorias.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-categorias',
@@ -26,48 +29,22 @@ export class CategoriasComponent implements OnInit, OnDestroy {
 
   categorias: Categoria[] = [];
 
-  categoria!: Categoria;
-
-  idCategoriaEditar: number | null = null;
-
   dataSource: MatTableDataSource<Categoria> = new MatTableDataSource<Categoria>(
     []
   );
 
-  categoriaForm!: FormGroup;
-
-  isReadyForm!: Promise<any>;
-
   constructor(
     private readonly categoriaService: CategoriaService,
-    private readonly formBuilder: FormBuilder
+    private readonly dialog: MatDialog
   ) {}
 
-  get nombre(): FormControl {
-    return this.categoriaForm.get('nombre') as FormControl;
-  }
-
-  get descripcion(): FormControl {
-    return this.categoriaForm.get('descripcion') as FormControl;
-  }
-
   ngOnInit(): void {
-    this.iniciarFormulario();
     this.obtenerTodas();
   }
 
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
-  }
-
-  iniciarFormulario(): void {
-    this.isReadyForm = Promise.resolve(
-      (this.categoriaForm = this.formBuilder.group({
-        nombre: [null, [Validators.required]],
-        descripcion: [null],
-      }))
-    );
   }
 
   obtenerTodas() {
@@ -82,81 +59,38 @@ export class CategoriasComponent implements OnInit, OnDestroy {
       });
   }
 
-  verDetalle(idCategoria: number): void {
-    this.categoriaService
-      .buscarPorId(idCategoria)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (response) => {
-          // this.categoria = response.valor;
-          console.table(this.categoria);
-        },
-      });
-  }
-
-  seleccionarCategoriaEditar(categoria: Categoria): void {
-    this.categoriaForm.patchValue({
-      nombre: categoria.nombre,
-      descripcion: categoria.descripcion,
-    });
-    this.idCategoriaEditar = categoria.id;
-  }
-
-  async guardar(): Promise<void> {
-    if (this.categoriaForm.invalid) {
-      await SwalUtil.showAlert(
-        'Información',
-        'Complete los campos requeridos',
-        'error'
-      );
-      return;
-    }
-
-    const categoria: GuardaCategoriaRequest = {
-      nombre: this.nombre.value,
-      descripcion: this.descripcion.value,
-    };
-
-    this.categoriaService.guardar(categoria).subscribe({
-      next: (response) => {
-        SwalUtil.showAlert('Información', response.mensaje, 'success').then(
-          () => this.obtenerTodas()
-        );
-      },
-      error: (error) => {
-        console.log(error);
-      },
+  verDetalle(categoriaId: number): void {
+    this.dialog.open(VerCategoriasComponent, {
+      data: { categoriaId },
     });
   }
 
-  async editar(): Promise<void> {
-    if (this.categoriaForm.invalid) {
-      await SwalUtil.showAlert(
-        'Información',
-        'Complete los campos requeridos',
-        'error'
-      );
-      return;
-    }
+  crearNuevo(): void {
+    const dialogRef = this.dialog.open(FormularioCategoriasComponent, {
+      width: '700px',
+    });
 
-    const categoria: Categoria = {
-      id: this.idCategoriaEditar ?? -1,
-      nombre: this.nombre.value,
-      descripcion: this.descripcion.value,
-    };
+    dialogRef.afterClosed().subscribe((result: Categoria) => {
+      if (result) {
+        this.categorias = [...this.categorias, result];
+        this.dataSource = new MatTableDataSource(this.categorias);
+      }
+    });
+  }
 
-    this.categoriaService.actualizar(categoria).subscribe({
-      next: (response) => {
-        SwalUtil.showAlert('Información', response.mensaje, 'success').then(
-          () => {
-            this.obtenerTodas();
-            this.idCategoriaEditar = null;
-          }
+  editarCategoria(categoria: Categoria): void {
+    const dialogRef = this.dialog.open(FormularioCategoriasComponent, {
+      data: { categoria },
+      width: '700px',
+    });
+
+    dialogRef.afterClosed().subscribe((result: Categoria) => {
+      if (result) {
+        this.categorias = this.categorias.map((categoria) =>
+          categoria.id === result.id ? result : categoria
         );
-      },
-      error: (error) => {
-        console.log(error);
-      },
+        this.dataSource = new MatTableDataSource(this.categorias);
+      }
     });
   }
 }

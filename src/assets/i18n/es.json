@@ -1,7 +1,10 @@
 {
   "categoria": {
     "titulos": {
-      "listar_categoria": "Categorías"
+      "listar_categoria": "Categorías",
+      "ver_detalle": "Detalle de la categoría",
+      "crear_categoria": "Crear categoría",
+      "editar_categoria": "Editar categoría"
     },
     "labels": {
       "id": "ID",
@@ -12,16 +15,20 @@
       "nombre": "Ingrese nombre",
       "descripcion": "Ingrese descripción"
     },
-    "buttons": {
+    "botones": {
+      "nuevo": "Nuevo",
       "agregar": "Agregar",
-      "editar": "Editar"
+      "editar": "Editar",
+      "cerrar": "Cerrar",
+      "cancelar": "Cancelar"
     }
   },
   "producto": {
     "titulos": {
       "listar_producto": "Productos",
       "crear_producto": "Crear producto",
-      "editar_producto": "Editar producto"
+      "editar_producto": "Editar producto",
+      "ver_detalle": "Detalle del producto"
     },
     "labels": {
       "id": "ID",
@@ -40,10 +47,12 @@
       "unidadesDisponibles": "Ingrese unidades Disponibles",
       "categoria": "Ingrese categoria"
     },
-    "buttons": {
+    "botones": {
       "nuevo": "Nuevo",
       "agregar": "Agregar",
-      "editar": "Editar"
+      "editar": "Editar",
+      "cerrar": "Cerrar",
+      "cancelar": "Cancelar"
     }
   }
 }
