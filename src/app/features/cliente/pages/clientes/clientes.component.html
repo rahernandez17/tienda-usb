@@ -1,0 +1,44 @@
+<h4>{{ "cliente.titulos.listar_cliente" | translate }}</h4>
+
+<button mat-raised-button color="primary" (click)="crearNuevo()">
+  {{ "cliente.botones.nuevo" | translate }}
+</button>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas">
+    <span *ngIf="column != 'opciones' && column != 'tipoDocumento'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "cliente.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let cliente">{{ cliente[column] }}</mat-cell>
+    </span>
+
+    <span *ngIf="column == 'tipoDocumento'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "cliente.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let cliente">{{
+        cliente.descripcionTipoDocumento
+      }}</mat-cell>
+    </span>
+
+    <span *ngIf="column === 'opciones'">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let cliente">
+        <button mat-icon-button color="accent" (click)="verDetalle(cliente.id)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="editarCliente(cliente)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </span>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>

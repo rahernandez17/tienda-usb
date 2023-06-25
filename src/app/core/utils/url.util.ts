@@ -14,4 +14,11 @@ export class UrlUtil {
   public static readonly URL_PRODUCTO_GUARDAR: string = '/producto/guardar';
   public static readonly URL_PRODUCTO_ACTUALIZAR: string =
     '/producto/actualizar';
+
+  public static readonly URL_CLIENTE_OBTENER_TODOS: string =
+    '/cliente/obtener-todos';
+  public static readonly URL_CLIENTE_BUSCAR_POR_ID: string =
+    '/cliente/obtener-por-id/{id}';
+  public static readonly URL_CLIENTE_GUARDAR: string = '/cliente/guardar';
+  public static readonly URL_CLIENTE_ACTUALIZAR: string = '/cliente/actualizar';
 }

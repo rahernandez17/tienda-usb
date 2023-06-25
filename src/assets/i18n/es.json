@@ -54,5 +54,35 @@
       "cerrar": "Cerrar",
       "cancelar": "Cancelar"
     }
+  },
+  "cliente": {
+    "titulos": {
+      "listar_cliente": "Clientes",
+      "ver_detalle": "Detalle del cliente",
+      "crear_cliente": "Crear cliente",
+      "editar_cliente": "Editar cliente"
+    },
+    "labels": {
+      "id": "ID",
+      "nombres": "Nombres",
+      "apellidos": "Apellidos",
+      "documento": "Documento",
+      "estado": "Estado",
+      "tipoDocumento": "Tipo de documento"
+    },
+    "placeholders": {
+      "nombre": "Ingrese nombres",
+      "apellidos": "Ingrese apellidos",
+      "documento": "Ingrese documento",
+      "estado": "Ingrese estado",
+      "tipoDocumento": "Ingrese tipo de documento"
+    },
+    "botones": {
+      "nuevo": "Nuevo",
+      "agregar": "Agregar",
+      "editar": "Editar",
+      "cerrar": "Cerrar",
+      "cancelar": "Cancelar"
+    }
   }
 }
