@@ -1,12 +1,49 @@
 {
-    "categoria": {
-        "titulos": {
-            "listar_categoria": "Categorías"
-        },
-        "labels": {
-            "id": "ID",
-            "nombre": "Nombre",
-            "descripcion": "Descripción"
-        }
+  "categoria": {
+    "titulos": {
+      "listar_categoria": "Categorías"
+    },
+    "labels": {
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripción"
+    },
+    "placeholders": {
+      "nombre": "Ingrese nombre",
+      "descripcion": "Ingrese descripción"
+    },
+    "buttons": {
+      "agregar": "Agregar",
+      "editar": "Editar"
     }
+  },
+  "producto": {
+    "titulos": {
+      "listar_producto": "Productos",
+      "crear_producto": "Crear producto",
+      "editar_producto": "Editar producto"
+    },
+    "labels": {
+      "id": "ID",
+      "nombre": "Nombre",
+      "referencia": "Referencia",
+      "descripcion": "Descripción",
+      "precioUnitario": "Precio Unitario",
+      "unidadesDisponibles": "Unidades Disponibles",
+      "categoria": "Categoria"
+    },
+    "placeholders": {
+      "nombre": "ingrese nombre",
+      "referencia": "Ingrese referencia",
+      "descripcion": "Ingrese descripción",
+      "precioUnitario": "Ingrese precio Unitario",
+      "unidadesDisponibles": "Ingrese unidades Disponibles",
+      "categoria": "Ingrese categoria"
+    },
+    "buttons": {
+      "nuevo": "Nuevo",
+      "agregar": "Agregar",
+      "editar": "Editar"
+    }
+  }
 }

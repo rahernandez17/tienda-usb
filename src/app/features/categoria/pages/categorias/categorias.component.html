@@ -1,0 +1,84 @@
+<h4>{{ "categoria.titulos.listar_categoria" | translate }}</h4>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas">
+    <span *ngIf="column != 'opciones'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "categoria.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let categoria">{{ categoria[column] }}</mat-cell>
+    </span>
+
+    <span *ngIf="column === 'opciones'">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let categoria">
+        <button
+          mat-icon-button
+          color="accent"
+          (click)="verDetalle(categoria.id)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="seleccionarCategoriaEditar(categoria)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </span>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>
+
+<div style="margin-top: 20px" class="container">
+  <form [formGroup]="categoriaForm" *ngIf="isReadyForm | async as isForm">
+    <mat-grid-list cols="1" rowHeight="80px">
+      <mat-grid-tile appearance="fill">
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="nombre"
+            type="text"
+            maxlength="10"
+            [placeholder]="'categoria.placeholders.nombre' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="1" rowHeight="80px">
+      <mat-grid-tile appearance="fill">
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="descripcion"
+            type="text"
+            [placeholder]="'categoria.placeholders.descripcion' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <button
+    *ngIf="!idCategoriaEditar"
+      mat-raised-button
+      color="primary"
+      style="margin-left: 800px"
+      (click)="guardar()"
+    >
+      {{ "categoria.buttons.agregar" | translate }}
+    </button>
+
+    <button
+    *ngIf="idCategoriaEditar"
+      mat-raised-button
+      color="primary"
+      style="margin-left: 800px"
+      (click)="editar()"
+    >
+      {{ "categoria.buttons.editar" | translate }}
+    </button>
+  </form>
+</div>

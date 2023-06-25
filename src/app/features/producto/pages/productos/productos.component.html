@@ -1,0 +1,48 @@
+<h4>{{ "producto.titulos.listar_producto" | translate }}</h4>
+
+<button mat-raised-button color="primary" (click)="crearNuevo()">
+  {{ "producto.buttons.nuevo" | translate }}
+</button>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas">
+    <span *ngIf="column != 'opciones' && column != 'categoria'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "producto.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto[column] }}</mat-cell>
+    </span>
+
+    <span *ngIf="column == 'categoria'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "producto.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{
+        producto.nombreCategoria
+      }}</mat-cell>
+    </span>
+
+    <span *ngIf="column === 'opciones'">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let producto">
+        <button
+          mat-icon-button
+          color="accent"
+          (click)="verDetalle(producto.id)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="editarProducto(producto)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </span>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>
