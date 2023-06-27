@@ -49,8 +49,8 @@ export class FormularioCategoriasComponent implements OnInit {
   iniciarFormulario(): void {
     this.isReadyForm = Promise.resolve(
       (this.categoriaForm = this.formBuilder.group({
-        nombre: [null, [Validators.required]],
-        descripcion: [null],
+        nombre: [null, [Validators.required, Validators.maxLength(10)]],
+        descripcion: [null, [Validators.maxLength(255)]],
       }))
     );
   }

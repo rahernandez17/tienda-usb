@@ -68,10 +68,12 @@
       "apellidos": "Apellidos",
       "documento": "Documento",
       "estado": "Estado",
-      "tipoDocumento": "Tipo de documento"
+      "tipoDocumento": "Tipo de documento",
+      "activo": "Activo",
+      "inactivo": "Inactivo"
     },
     "placeholders": {
-      "nombre": "Ingrese nombres",
+      "nombres": "Ingrese nombres",
       "apellidos": "Ingrese apellidos",
       "documento": "Ingrese documento",
       "estado": "Ingrese estado",

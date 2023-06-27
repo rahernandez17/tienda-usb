@@ -1,1 +1,113 @@
-<p>formulario-clientes works!</p>
+<h2 mat-dialog-title *ngIf="!idClienteEditar">
+  {{ "cliente.titulos.crear_cliente" | translate }}
+</h2>
+<h2 mat-dialog-title *ngIf="idClienteEditar">
+  {{ "cliente.titulos.editar_cliente" | translate }}
+</h2>
+
+<form [formGroup]="clienteForm" *ngIf="isReadyForm | async as isForm">
+  <mat-dialog-content class="mat-typography">
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "cliente.labels.nombres" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="nombres"
+            type="text"
+            maxlength="50"
+            [placeholder]="'cliente.placeholders.nombres' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "cliente.labels.apellidos" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="apellidos"
+            type="text"
+            maxlength="50"
+            [placeholder]="'cliente.placeholders.apellidos' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{
+            "cliente.labels.tipoDocumento" | translate
+          }}</mat-label>
+          <mat-select
+            formControlName="tipoDocumento"
+            [placeholder]="'cliente.placeholders.tipoDocumento' | translate"
+          >
+            <mat-option
+              *ngFor="let tipoDocumento of tiposDocumento"
+              [value]="tipoDocumento.id"
+            >
+              {{ tipoDocumento.descripcion }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "cliente.labels.documento" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="documento"
+            type="number"
+            maxlength="50"
+            [placeholder]="'cliente.placeholders.documento' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "cliente.labels.estado" | translate }}</mat-label>
+          <mat-select
+            formControlName="estado"
+            [placeholder]="'cliente.placeholders.estado' | translate"
+          >
+            <mat-option [value]="'S'">
+              {{ "cliente.labels.activo" | translate }}
+            </mat-option>
+
+            <mat-option [value]="'N'">
+              {{ "cliente.labels.inactivo" | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>
+      {{ "cliente.botones.cancelar" | translate }}
+    </button>
+
+    <button
+      *ngIf="!idClienteEditar"
+      mat-raised-button
+      color="primary"
+      (click)="guardar()"
+      cdkFocusInitial
+    >
+      {{ "cliente.botones.agregar" | translate }}
+    </button>
+
+    <button
+      *ngIf="idClienteEditar"
+      mat-raised-button
+      color="primary"
+      (click)="editar()"
+      cdkFocusInitial
+    >
+      {{ "cliente.botones.editar" | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -21,4 +21,7 @@ export class UrlUtil {
     '/cliente/obtener-por-id/{id}';
   public static readonly URL_CLIENTE_GUARDAR: string = '/cliente/guardar';
   public static readonly URL_CLIENTE_ACTUALIZAR: string = '/cliente/actualizar';
+
+  public static readonly URL_TIPO_DOCUMENTO_OBTENER_TODOS: string =
+    '/tipo-documento/obtener-todos';
 }

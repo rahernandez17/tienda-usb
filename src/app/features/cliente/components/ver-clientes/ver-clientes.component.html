@@ -1,1 +1,33 @@
-<p>ver-clientes works!</p>
+<h2 mat-dialog-title>{{ "cliente.titulos.ver_detalle" | translate }}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-list role="list" *ngIf="cliente">
+    <mat-list-item role="listitem">
+      {{ "cliente.labels.id" | translate }}: {{ cliente.id }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "cliente.labels.nombres" | translate }}:
+      {{ cliente.nombres }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "cliente.labels.apellidos" | translate }}:
+      {{ cliente.apellidos }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "cliente.labels.tipoDocumento" | translate }}:
+      {{ cliente.descripcionTipoDocumento }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "cliente.labels.documento" | translate }}:
+      {{ cliente.documento }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "cliente.labels.estado" | translate }}:
+      {{ cliente.estado }}</mat-list-item
+    >
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>
+    {{ "cliente.botones.cerrar" | translate }}
+  </button>
+</mat-dialog-actions>
