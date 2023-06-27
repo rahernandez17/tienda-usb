@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
@@ -12,7 +12,7 @@ import { VerProductosComponent } from '../../components/ver-productos/ver-produc
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.scss'],
 })
-export class ProductosComponent {
+export class ProductosComponent implements OnInit, OnDestroy {
   readonly listColumnas: string[] = [
     'id',
     'nombre',
@@ -71,7 +71,6 @@ export class ProductosComponent {
 
     dialogRef.afterClosed().subscribe((result: Producto) => {
       if (result) {
-        console.log('Crear', result);
         this.productos = [...this.productos, result];
         this.dataSource = new MatTableDataSource(this.productos);
       }

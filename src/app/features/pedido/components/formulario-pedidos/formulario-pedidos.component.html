@@ -1,0 +1,93 @@
+<h2 mat-dialog-title *ngIf="!idPedidoEditar">
+  {{ "pedido.titulos.crear_pedido" | translate }}
+</h2>
+<h2 mat-dialog-title *ngIf="idPedidoEditar">
+  {{ "pedido.titulos.editar_pedido" | translate }}
+</h2>
+
+<form [formGroup]="pedidoForm" *ngIf="isReadyForm | async as isForm">
+  <mat-dialog-content class="mat-typography">
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "pedido.labels.fecha" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="fecha"
+            type="date"
+            [placeholder]="'pedido.placeholders.fecha' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "pedido.labels.total" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="total"
+            type="number"
+            [placeholder]="'pedido.placeholders.total' | translate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "pedido.labels.estadoPedido" | translate }}</mat-label>
+          <mat-select
+            formControlName="estadoPedido"
+            [placeholder]="'pedido.placeholders.estadoPedido' | translate"
+          >
+            <mat-option
+              *ngFor="let estadoPedido of estadosPedido"
+              [value]="estadoPedido.id"
+            >
+              {{ estadoPedido.descripcion }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="fill">
+        <mat-form-field style="width: 100%; margin: 0 0.5rem">
+          <mat-label>{{ "pedido.labels.cliente" | translate }}</mat-label>
+          <mat-select
+            formControlName="cliente"
+            [placeholder]="'pedido.placeholders.cliente' | translate"
+          >
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+              {{ cliente.documento }} - {{ cliente.nombres }}
+              {{ cliente.apellidos }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>
+      {{ "pedido.botones.cancelar" | translate }}
+    </button>
+
+    <button
+      *ngIf="!idPedidoEditar"
+      mat-raised-button
+      color="primary"
+      (click)="guardar()"
+      cdkFocusInitial
+    >
+      {{ "pedido.botones.agregar" | translate }}
+    </button>
+
+    <button
+      *ngIf="idPedidoEditar"
+      mat-raised-button
+      color="primary"
+      (click)="editar()"
+      cdkFocusInitial
+    >
+      {{ "pedido.botones.editar" | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

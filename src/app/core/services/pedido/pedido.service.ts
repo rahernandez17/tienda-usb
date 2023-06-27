@@ -2,31 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListSimpleResponse } from '../../interfaces/list-simple-response.interface';
 import {
-  ActualizaClienteRequest,
-  Cliente,
-  GuardaClienteRequest,
-} from '../../interfaces/cliente/cliente.interface';
+  ActualizaPedidoRequest,
+  GuardaPedidoRequest,
+  Pedido,
+} from '../../interfaces/pedido/pedido.interface';
+import { SimpleResponse } from '../../interfaces/simple-response.interface';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { UrlUtil } from '../../utils/url.util';
-import { SimpleResponse } from '../../interfaces/simple-response.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ClienteService {
+export class PedidoService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  public obtenerTodos(): Observable<ListSimpleResponse<Cliente>> {
-    return this.httpClient.get<ListSimpleResponse<Cliente>>(
-      `${environment.urlServer}${UrlUtil.URL_CLIENTE_OBTENER_TODOS}`
+  public obtenerTodos(): Observable<ListSimpleResponse<Pedido>> {
+    return this.httpClient.get<ListSimpleResponse<Pedido>>(
+      `${environment.urlServer}${UrlUtil.URL_PEDIDO_OBTENER_TODOS}`
     );
   }
 
-  public buscarPorId(id: number): Observable<SimpleResponse<Cliente>> {
+  public buscarPorId(id: number): Observable<SimpleResponse<Pedido>> {
     return this.httpClient
-      .get<SimpleResponse<Cliente>>(
-        `${environment.urlServer}${UrlUtil.URL_CLIENTE_BUSCAR_POR_ID.replace(
+      .get<SimpleResponse<Pedido>>(
+        `${environment.urlServer}${UrlUtil.URL_PEDIDO_BUSCAR_POR_ID.replace(
           '{id}',
           id.toString()
         )}`
@@ -39,12 +39,12 @@ export class ClienteService {
   }
 
   public guardar(
-    cliente: GuardaClienteRequest
-  ): Observable<SimpleResponse<Cliente>> {
+    pedido: GuardaPedidoRequest
+  ): Observable<SimpleResponse<Pedido>> {
     return this.httpClient
-      .post<SimpleResponse<Cliente>>(
-        `${environment.urlServer}${UrlUtil.URL_CLIENTE_GUARDAR}`,
-        cliente
+      .post<SimpleResponse<Pedido>>(
+        `${environment.urlServer}${UrlUtil.URL_PEDIDO_GUARDAR}`,
+        pedido
       )
       .pipe(
         catchError((error) =>
@@ -54,12 +54,12 @@ export class ClienteService {
   }
 
   public actualizar(
-    cliente: ActualizaClienteRequest
-  ): Observable<SimpleResponse<Cliente>> {
+    pedido: ActualizaPedidoRequest
+  ): Observable<SimpleResponse<Pedido>> {
     return this.httpClient
-      .put<SimpleResponse<Cliente>>(
-        `${environment.urlServer}${UrlUtil.URL_CLIENTE_ACTUALIZAR}`,
-        cliente
+      .put<SimpleResponse<Pedido>>(
+        `${environment.urlServer}${UrlUtil.URL_PEDIDO_ACTUALIZAR}`,
+        pedido
       )
       .pipe(
         catchError((error) =>

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -23,7 +23,7 @@ import { SimpleResponse } from 'src/app/core/interfaces/simple-response.interfac
   templateUrl: './formulario-productos.component.html',
   styleUrls: ['./formulario-productos.component.scss'],
 })
-export class FormularioProductosComponent {
+export class FormularioProductosComponent implements OnInit {
   private readonly destroy$: Subject<any> = new Subject();
 
   categorias: Categoria[] = [];

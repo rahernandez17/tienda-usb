@@ -86,5 +86,33 @@
       "cerrar": "Cerrar",
       "cancelar": "Cancelar"
     }
+  },
+  "pedido": {
+    "titulos": {
+      "listar_pedido": "Pedidos",
+      "ver_detalle": "Detalle del Pedido",
+      "crear_pedido": "Crear pedido",
+      "editar_pedido": "Editar pedido"
+    },
+    "labels": {
+      "id": "ID",
+      "fecha": "Fecha",
+      "total": "Total",
+      "cliente": "Cliente",
+      "estadoPedido": "Estado del pedido"
+    },
+    "placeholders": {
+      "fecha": "Ingrese fecha",
+      "total": "Ingrese total",
+      "cliente": "Ingrese cliente",
+      "estadoPedido": "Ingrese estado del pedido"
+    },
+    "botones": {
+      "nuevo": "Nuevo",
+      "agregar": "Agregar",
+      "editar": "Editar",
+      "cerrar": "Cerrar",
+      "cancelar": "Cancelar"
+    }
   }
 }

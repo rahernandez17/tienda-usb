@@ -1,0 +1,53 @@
+<h4>{{ "pedido.titulos.listar_pedido" | translate }}</h4>
+
+<button mat-raised-button color="primary" (click)="crearNuevo()">
+  {{ "pedido.botones.nuevo" | translate }}
+</button>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas">
+    <span
+      *ngIf="
+        column != 'opciones' && column != 'cliente' && column != 'estadoPedido'
+      "
+    >
+      <mat-header-cell *matHeaderCellDef>{{
+        "pedido.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let pedido">{{ pedido[column] }}</mat-cell>
+    </span>
+
+    <span *ngIf="column == 'cliente'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "pedido.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let pedido"
+        >{{ pedido.nombresCliente }} {{ pedido.apellidosCliente }}</mat-cell
+      >
+    </span>
+
+    <span *ngIf="column == 'estadoPedido'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "pedido.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let pedido">{{
+        pedido.descripcionEstadoPedido
+      }}</mat-cell>
+    </span>
+
+    <span *ngIf="column === 'opciones'">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let pedido">
+        <button mat-icon-button color="accent" (click)="verDetalle(pedido.id)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="editarPedido(pedido)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </span>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>

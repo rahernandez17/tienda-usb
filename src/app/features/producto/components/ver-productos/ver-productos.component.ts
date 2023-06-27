@@ -23,9 +23,9 @@ export class VerProductosComponent implements OnInit {
     this.verDetalle(this.data.productoId);
   }
 
-  verDetalle(idProducto: number): void {
+  verDetalle(productoId: number): void {
     this.productoService
-      .buscarPorId(idProducto)
+      .buscarPorId(productoId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => (this.producto = response.valor),

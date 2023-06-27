@@ -23,9 +23,9 @@ export class VerClientesComponent implements OnInit {
     this.verDetalle(this.data.clienteId);
   }
 
-  verDetalle(idCliente: number): void {
+  verDetalle(clienteId: number): void {
     this.clienteService
-      .buscarPorId(idCliente)
+      .buscarPorId(clienteId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => (this.cliente = response.valor),

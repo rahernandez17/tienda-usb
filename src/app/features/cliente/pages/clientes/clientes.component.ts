@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
@@ -12,7 +12,7 @@ import { FormularioClientesComponent } from '../../components/formulario-cliente
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.scss'],
 })
-export class ClientesComponent {
+export class ClientesComponent implements OnInit, OnDestroy {
   readonly listColumnas: string[] = [
     'id',
     'nombres',

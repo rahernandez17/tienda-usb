@@ -24,4 +24,23 @@ export class UrlUtil {
 
   public static readonly URL_TIPO_DOCUMENTO_OBTENER_TODOS: string =
     '/tipo-documento/obtener-todos';
+
+  public static readonly URL_ESTADO_PEDIDO_OBTENER_TODOS: string =
+    '/estado-pedido/obtener-todos';
+
+  public static readonly URL_PEDIDO_OBTENER_TODOS: string =
+    '/pedido/obtener-todos';
+  public static readonly URL_PEDIDO_BUSCAR_POR_ID: string =
+    '/pedido/obtener-por-id/{id}';
+  public static readonly URL_PEDIDO_GUARDAR: string = '/pedido/guardar';
+  public static readonly URL_PEDIDO_ACTUALIZAR: string = '/pedido/actualizar';
+
+  public static readonly URL_DETALLE_PEDIDO_OBTENER_TODOS: string =
+    '/detalle-pedido/obtener-todos';
+  public static readonly URL_DETALLE_PEDIDO_BUSCAR_POR_ID: string =
+    '/detalle-pedido/obtener-por-id/{id}';
+  public static readonly URL_DETALLE_PEDIDO_GUARDAR: string =
+    '/detalle-pedido/guardar';
+  public static readonly URL_DETALLE_PEDIDO_ACTUALIZAR: string =
+    '/detalle-pedido/actualizar';
 }
