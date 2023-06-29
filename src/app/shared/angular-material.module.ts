@@ -9,6 +9,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [],
@@ -23,6 +25,8 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatDialogModule,
     MatListModule,
+    MatToolbarModule,
+    MatSidenavModule,
   ],
   exports: [
     MatTableModule,
@@ -34,6 +38,8 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatDialogModule,
     MatListModule,
+    MatToolbarModule,
+    MatSidenavModule,
   ],
 })
 export class AngularMaterialModule {}

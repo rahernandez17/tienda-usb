@@ -1,1 +1,61 @@
-<router-outlet></router-outlet>
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" (click)="toggleSideNav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span style="margin-left: 1rem">{{ "titulo" | translate }}</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="example-sidenav" mode="side" [(opened)]="opened">
+    <mat-list>
+      <mat-list-item style="padding: 0">
+        <button
+          mat-button
+          style="width: 100%; justify-content: start"
+          (click)="redirectTo('/categorias')"
+        >
+          {{ "categoria.titulos.listar_categoria" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item style="padding: 0">
+        <button
+          mat-button
+          style="width: 100%; justify-content: start"
+          (click)="redirectTo('/clientes')"
+        >
+          {{ "cliente.titulos.listar_cliente" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item style="padding: 0">
+        <button
+          mat-button
+          style="width: 100%; justify-content: start"
+          (click)="redirectTo('/productos')"
+        >
+          {{ "producto.titulos.listar_producto" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item style="padding: 0">
+        <button
+          mat-button
+          style="width: 100%; justify-content: start"
+          (click)="redirectTo('/pedidos')"
+        >
+          {{ "pedido.titulos.listar_pedido" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item style="padding: 0">
+        <button
+          mat-button
+          style="width: 100%; justify-content: start"
+          (click)="redirectTo('/detalles-pedidos')"
+        >
+          {{ "detalle_pedido.titulos.listar_detalle_pedido" | translate }}
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="example-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
