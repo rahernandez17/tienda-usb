@@ -114,5 +114,33 @@
       "cerrar": "Cerrar",
       "cancelar": "Cancelar"
     }
+  },
+  "detalle_pedido": {
+    "titulos": {
+      "listar_detalle_pedido": "Detalles de pedidos",
+      "ver_detalle_pedido": "Detalle del Pedido",
+      "crear_detalle_pedido": "Crear detalle pedido",
+      "editar_detalle_pedido": "Editar detalle pedido"
+    },
+    "labels": {
+      "id": "ID",
+      "cantidad": "Cantidad",
+      "valor": "Valor",
+      "pedido": "Pedido",
+      "producto": "Producto"
+    },
+    "placeholders": {
+      "cantidad": "Ingrese cantidad",
+      "valor": "Ingrese valor",
+      "pedido": "Ingrese pedido",
+      "producto": "Ingrese producto"
+    },
+    "botones": {
+      "nuevo": "Nuevo",
+      "agregar": "Agregar",
+      "editar": "Editar",
+      "cerrar": "Cerrar",
+      "cancelar": "Cancelar"
+    }
   }
 }

@@ -1,1 +1,30 @@
-<p>ver-detalles-pedidos works!</p>
+<h2 mat-dialog-title>{{ "detalle_pedido.titulos.ver_detalle_pedido" | translate }}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-list role="list" *ngIf="detallePedido">
+    <mat-list-item role="listitem">
+      {{ "detalle_pedido.labels.id" | translate }}:
+      {{ detallePedido.id }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "detalle_pedido.labels.cantidad" | translate }}:
+      {{ detallePedido.cantidad }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "detalle_pedido.labels.valor" | translate }}:
+      {{ detallePedido.valor }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      >{{ "detalle_pedido.labels.pedido" | translate }}:
+      {{ detallePedido.pedidoId }}
+    </mat-list-item>
+    <mat-list-item role="listitem"
+      >{{ "detalle_pedido.labels.producto" | translate }}:
+      {{ detallePedido.nombreProducto }}</mat-list-item
+    >
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>
+    {{ "detalle_pedido.botones.cerrar" | translate }}
+  </button>
+</mat-dialog-actions>

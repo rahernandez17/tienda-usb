@@ -1,1 +1,61 @@
-<p>detalles-pedidos works!</p>
+<h4>{{ "detalle_pedido.titulos.listar_detalle_pedido" | translate }}</h4>
+
+<button mat-raised-button color="primary" (click)="crearNuevo()">
+  {{ "detalle_pedido.botones.nuevo" | translate }}
+</button>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas">
+    <span
+      *ngIf="column != 'opciones' && column != 'pedido' && column != 'producto'"
+    >
+      <mat-header-cell *matHeaderCellDef>{{
+        "detalle_pedido.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let detallePedido">{{
+        detallePedido[column]
+      }}</mat-cell>
+    </span>
+
+    <span *ngIf="column == 'pedido'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "detalle_pedido.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let detallePedido">{{
+        detallePedido.pedidoId
+      }}</mat-cell>
+    </span>
+
+    <span *ngIf="column == 'producto'">
+      <mat-header-cell *matHeaderCellDef>{{
+        "detalle_pedido.labels." + column | translate
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let detallePedido">{{
+        detallePedido.nombreProducto
+      }}</mat-cell>
+    </span>
+
+    <span *ngIf="column === 'opciones'">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let detalle_pedido">
+        <button
+          mat-icon-button
+          color="accent"
+          (click)="verDetalle(detalle_pedido.id)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="editarDetallePedido(detalle_pedido)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </span>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>
