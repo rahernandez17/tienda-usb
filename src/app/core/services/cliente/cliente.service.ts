@@ -48,7 +48,17 @@ export class ClienteService {
       )
       .pipe(
         catchError((error) =>
-          throwError(() => error.error as SimpleResponse<any>)
+          throwError(() => {
+            const respuesta = error.error as SimpleResponse<any>;
+            const erroresValidacion: string = Array.from(
+              Object.values(respuesta.errores)
+            ).join('\n');
+
+            return {
+              ...respuesta,
+              mensaje: `${respuesta.mensaje ?? ''}${erroresValidacion ?? ''}`,
+            } as SimpleResponse<any>;
+          })
         )
       );
   }
@@ -63,7 +73,17 @@ export class ClienteService {
       )
       .pipe(
         catchError((error) =>
-          throwError(() => error.error as SimpleResponse<any>)
+          throwError(() => {
+            const respuesta = error.error as SimpleResponse<any>;
+            const erroresValidacion: string = Array.from(
+              Object.values(respuesta.errores)
+            ).join('\n');
+
+            return {
+              ...respuesta,
+              mensaje: `${respuesta.mensaje ?? ''}${erroresValidacion ?? ''}`,
+            } as SimpleResponse<any>;
+          })
         )
       );
   }
