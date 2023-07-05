@@ -2,8 +2,8 @@
   {{ "producto.titulos.listar_producto" | translate }}
 </h1>
 
-<button mat-raised-button color="primary" (click)="crearNuevo()">
-  {{ "producto.botones.nuevo" | translate }}
+<button mat-flat-button color="primary" (click)="crearNuevo()">
+  <mat-icon style="margin: 0">add</mat-icon>
 </button>
 
 <mat-table [dataSource]="dataSource" matSort>

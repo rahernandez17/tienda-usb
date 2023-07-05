@@ -88,7 +88,7 @@ export class FormularioPedidosComponent implements OnInit {
   seleccionarPedidoEditar(pedido: Pedido): void {
     if (pedido) {
       this.pedidoForm.patchValue({
-        fecha: pedido.fecha,
+        fecha: pedido.fecha.split('/').reverse().join('-'),
         total: pedido.total,
         cliente: pedido.clienteId,
         estadoPedido: pedido.estadoPedidoId,
