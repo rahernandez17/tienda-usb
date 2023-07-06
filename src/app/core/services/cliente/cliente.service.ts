@@ -51,9 +51,9 @@ export class ClienteService {
           throwError(() => {
             const respuesta = error.error as SimpleResponse<any>;
             const erroresValidacion: string = Array.from(
-              Object.values(respuesta.errores)
+              Object.values(respuesta?.errores ?? {})
             ).join('\n');
-
+            
             return {
               ...respuesta,
               mensaje: `${respuesta.mensaje ?? ''}${erroresValidacion ?? ''}`,
@@ -76,9 +76,9 @@ export class ClienteService {
           throwError(() => {
             const respuesta = error.error as SimpleResponse<any>;
             const erroresValidacion: string = Array.from(
-              Object.values(respuesta.errores)
+              Object.values(respuesta?.errores ?? {})
             ).join('\n');
-
+            
             return {
               ...respuesta,
               mensaje: `${respuesta.mensaje ?? ''}${erroresValidacion ?? ''}`,
