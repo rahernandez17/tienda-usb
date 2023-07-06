@@ -1,27 +1,39 @@
-# TiendaUsb
+# Tienda USB - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
+Este proyecto contiene toda la funcionalidad gráfica (GUI) para poder hacer gestión de categorías, clientes, productos, pedidos y detalles de pedidos de la aplicación Tienda USB.
 
-## Development server
+## Tecnologías
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular 16
+- Angular Material 16
+- NodeJS 18.16
+- NPM 9.7.2
 
-## Code scaffolding
+![icono angular](/icons/file_type_angular_icon_130754.png)
+![icono node js](/icons/nodejs_original_wordmark_logo_icon_146412.png)
+![icono npm](/icons/npm_original_wordmark_logo_icon_146402.png)
+![icono html](/icons/file_type_html_icon_130541.png)
+![icono typescript](/icons/file_type_typescript_official_icon_130107.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Autores
+- Raul Hernandez
+- Valeria Delgado
 
-## Build
+## Instalación
+Este proyecto utiliza Angular 16, por lo que es importante instalar los requerimientos expuestos en el punto *Tecnologías*. De igual manera, el backend debe estar inicializado. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Como primera medida, debemos instalar las dependencias del proeycto. Ejecutamos el siguiente comando en la _raíz del proyecto_.
 
-## Running unit tests
+```bash
+npm i
+```
+Esto nos creará la carpeta _node_modules_.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Ejecución
+Para poner en marcha el proyecto, debes abrir una terminal en la _raíz del proyecto_ y ejecutar el siguiente comando:
 
-## Running end-to-end tests
+```bash
+ng serve -o
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+El proyecto se levantará en el **puerto 4200** y aperturará el sitio web en una pestaña del navegador que tengas por defecto. La URL base es <http://localhost:4200/>.
